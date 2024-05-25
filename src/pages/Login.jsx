@@ -20,6 +20,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState("");
+  const [storedData, setStoredData] = useState('');
 
   const handleLogin = () => {
     if (email == "") {
@@ -44,7 +45,9 @@ const Login = () => {
               setPassword("");
               navigate("/");
             }, 3000);
+            localStorage.setItem('myData', JSON.stringify(user));
             dispatch(loggeduser({user}))
+            
           } else {
             toast.error("'Please verify your email before signing in.");
           }
@@ -71,6 +74,7 @@ const Login = () => {
           // console.log(errorCode, errorMessage);
         });
     }
+    
   };
 
   return (

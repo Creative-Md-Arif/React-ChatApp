@@ -3,7 +3,9 @@ import { IoMdMore } from "react-icons/io"
 import PeopleItems from "./PeopleItems"
 
 
+
 const People = () => {
+
   return (
     <div className="w-1/3 h-[505px] bg-gray-800 rounded-lg shadow-lg">
     <div className="">

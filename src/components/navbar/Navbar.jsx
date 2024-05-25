@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { djvImg } from "../../assets/image";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.userSlice.value);
   return (
     <nav className="bg-gray-800 flex flex-col justify-between h-screen w-[220px]">
       <div className="max-w-xs mx-auto px-4 py-6">
@@ -32,10 +33,10 @@ const Navbar = () => {
       <div>
         <Link className=" cursor-pointer" to="/profile">
           <div className="flex gap-4 my-4 p-4">
-            <img className="w-10 h-10 rounded-full" src={djvImg} alt="" />
+            <img className="w-10 h-10 rounded-full" src={user.photoURL} alt="" />
             <div className="flex flex-col items-start  w-full">
               <h3 className=" text-white font-secondary font-semibold text-[14px]">
-                Arif Mohammad
+               {user.displayName}
               </h3>
               <h4 className="text-white font-secondary font-semibold text-[14px]">
                 Edit Profile
