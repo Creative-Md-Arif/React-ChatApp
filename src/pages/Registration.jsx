@@ -3,6 +3,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+
 import { getAuth, createUserWithEmailAndPassword ,sendEmailVerification } from "firebase/auth";
 
 const Registration = () => {
@@ -12,6 +15,7 @@ const Registration = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword , setShowPassword] = useState("");
 
   // const [usererror , setUserError] = useState ({
   //   nameerror: "",
@@ -30,20 +34,21 @@ const Registration = () => {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
+          // console.log(user);
           sendEmailVerification(auth.currentUser)
           .then(() => {
            toast.success(
              "Registration Successfully! Verification email sent! Please check your inbox."
            );
            // Email verification sent!
-           //navigate
+           setName("");
+           setEmail("");
+           setPassword("");
            //set time out
+           //navigate
            setTimeout(() => {
              navigate("/login");
             }, 3000);
-            setName("");
-            setEmail("");
-            setPassword("");
          });
         })
         .catch((error) => {
@@ -112,18 +117,32 @@ const Registration = () => {
                     required=""
                   />
                 </div>
-                <div>
+                <div className="">
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     password
                   </label>
+                  <div className=" relative">
                   <input
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
                   />
+                  <div onClick={() => setShowPassword(!showPassword)} className="absolute right-2 top-1/2 -translate-y-1/2 -translate-x-1/2">
+
+                    {
+                      showPassword 
+                      ?
+                      <FaRegEye />
+
+                      :
+                      <FaRegEyeSlash />
+
+                    }
+                  </div>
+                  </div>
                 </div>
                 <div className="flex items-start">
                   <div className="flex items-center h-5">

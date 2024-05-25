@@ -11,7 +11,7 @@ import Layout from "./Layout";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Chat from "./pages/Chat";
-import Group from "./components/homeItems/Group/Group";
+
 
 function App() {
   const router = createBrowserRouter(
