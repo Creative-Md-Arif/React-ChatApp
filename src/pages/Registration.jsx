@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
-import { getAuth, createUserWithEmailAndPassword ,sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword ,sendEmailVerification ,updateProfile } from "firebase/auth";
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -36,6 +36,10 @@ const Registration = () => {
           const user = userCredential.user;
           // console.log(user);
           sendEmailVerification(auth.currentUser)
+          updateProfile(auth.currentUser, {
+            displayName: name, 
+            photoURL: "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png"
+          })
           .then(() => {
            toast.success(
              "Registration Successfully! Verification email sent! Please check your inbox."

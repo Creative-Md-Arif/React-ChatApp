@@ -6,10 +6,16 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { loggeduser } from "../redux/userSlice";
+import { getDatabase, ref, set } from "firebase/database";
+
 
 const Login = () => {
+  const db = getDatabase();
   const auth = getAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,14 +31,20 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
+          // console.log(user);
           if (user.emailVerified == true) {
+            set(ref(db, 'users/' + user.uid), {
+              username: user.displayName,
+              email: user.email,
+              profile_picture : user.photoURL
+            });          
             toast.success("Signed in successfully");
             setTimeout(() => {
               setEmail("");
               setPassword("");
               navigate("/");
             }, 3000);
+            dispatch(loggeduser({user}))
           } else {
             toast.error("'Please verify your email before signing in.");
           }
