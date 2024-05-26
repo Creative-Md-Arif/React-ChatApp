@@ -20,7 +20,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState("");
-  const [storedData, setStoredData] = useState('');
 
   const handleLogin = () => {
     if (email == "") {
@@ -45,7 +44,7 @@ const Login = () => {
               setPassword("");
               navigate("/");
             }, 3000);
-            localStorage.setItem('myData', JSON.stringify(user));
+            // localStorage.setItem('user', JSON.stringify(user));
             dispatch(loggeduser({user}))
             
           } else {

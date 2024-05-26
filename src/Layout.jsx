@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Outlet, useNavigate } from "react-router-dom"
+import { Outlet, useNavigate, } from "react-router-dom"
 import Navbar from "./components/navbar/Navbar"
 import { useSelector } from "react-redux"
 import { useEffect } from "react";
@@ -7,14 +7,12 @@ import { useEffect } from "react";
 
 const Layout = () => {
   const navigate = useNavigate();
-  const user = useSelector((state) => state.userSlice.value);
+  const user = useSelector((state) => state.userSlice.user);
   
   useEffect(() => {
     if(!user){
-      return navigate("/login");
-    } else if ( user == null) {
-      return navigate("/login")
-    }
+    return navigate("/login");
+    } 
 },[])
 
   

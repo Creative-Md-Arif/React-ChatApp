@@ -5,15 +5,16 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userSlice = createSlice({
       name: 'user',
       initialState: {
-      value: JSON.parse(localStorage.getItem("myData")) 
-        ? 
-        JSON.parse(localStorage.getItem("myData"))
-        :
+        user:
+        //  JSON.parse(localStorage.getItem("user")) 
+        // ? 
+        // JSON.parse(localStorage.getItem("user"))
+        // :
         null,
       },
       reducers: {
-            loggeduser: (state, action) => {
-                  state.value = action.payload; 
+            loggeduser:(state, action) => {
+                  state.user = action.payload; 
         },
       },
     })
