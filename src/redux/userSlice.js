@@ -5,12 +5,10 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userSlice = createSlice({
       name: 'user',
       initialState: {
-        user:
-        //  JSON.parse(localStorage.getItem("user")) 
-        // ? 
-        // JSON.parse(localStorage.getItem("user"))
-        // :
-        null,
+        user:JSON.parse(localStorage.getItem("myData")) 
+        ?
+        JSON.parse(localStorage.getItem("myData")) 
+        : null,
       },
       reducers: {
             loggeduser:(state, action) => {

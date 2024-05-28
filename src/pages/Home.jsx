@@ -7,7 +7,7 @@ import MyGroup from "../components/homeItems/myGroup/MyGroup";
 import People from "../components/homeItems/people/People";
 
 const Home = () => {
-  // const userFromLocal = JSON.parse(localStorage.getItem("user"));
+  const userFromLocal = JSON.parse(localStorage.getItem("myData"));
   // console.log(userFromLocal);
   return (
     <div className="w-full h-screen">

@@ -44,8 +44,8 @@ const Login = () => {
               setPassword("");
               navigate("/");
             }, 3000);
-            // localStorage.setItem('user', JSON.stringify(user));
-            dispatch(loggeduser({user}))
+            localStorage.setItem('myData', JSON.stringify(user));
+            dispatch(loggeduser(user))
             
           } else {
             toast.error("'Please verify your email before signing in.");

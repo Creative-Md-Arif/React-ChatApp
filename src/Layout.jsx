@@ -7,17 +7,21 @@ import { useEffect } from "react";
 
 const Layout = () => {
   const navigate = useNavigate();
-  const user = useSelector((state) => state.userSlice.user);
-  
-  useEffect(() => {
-    if(!user){
+
+
+let user = useSelector((state) => state.userSlice.user);
+// console.log(user);
+
+useEffect(()=>{
+  if(!user){
     return navigate("/login");
-    } 
-},[])
+  }
+},[]);
+
 
   
 
-  // console.log(user);
+
   return (
     <div className="flex">
       <Navbar/>

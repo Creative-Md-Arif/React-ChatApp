@@ -1,8 +1,8 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-// import { useSelector } from "react-redux";
-
 const Navbar = () => {
-  // const user = useSelector((state) => state.userSlice.user);
+  let user = useSelector((state) => state.userSlice.user);
+  // console.log(user);
   return (
     <nav className="bg-gray-800 flex flex-col justify-between h-screen w-[220px]">
       <div className="max-w-xs mx-auto px-4 py-6">
@@ -33,10 +33,10 @@ const Navbar = () => {
       <div>
         <Link className=" cursor-pointer" to="/profile">
           <div className="flex gap-4 my-4 p-4">
-            <img className="w-10 h-10 rounded-full" src="" alt="" />
+            <img className="w-10 h-10 rounded-full" src={user?.photoURL} alt="" />
             <div className="flex flex-col items-start  w-full">
               <h3 className=" text-white font-secondary font-semibold text-[14px]">
-               arif
+               {user?.displayName}
               </h3>
               <h4 className="text-white font-secondary font-semibold text-[14px]">
                 Edit Profile
